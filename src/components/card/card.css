@@ -1,0 +1,26 @@
+.card {
+background-color: red;
+border-radius: 5px;
+}
+
+.card-title {
+    padding: 20px;
+    border-bottom: 1px solid #FF9200;
+}
+
+.card-title > h1 {
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 20px;
+    border-bottom: 1px solid #FF9200;
+}
+
+.card-footer {
+    padding: 20px;
+}
+
+.card-footer > p {
+    font-style: italic;
+}
