@@ -6,6 +6,8 @@ class Header extends Component {
     super(props);
     this.state = {};
   }
+
+  // Renders
   render() {
     return <header className="header">Article list</header>;
   }

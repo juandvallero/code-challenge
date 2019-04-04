@@ -6,6 +6,8 @@ class Footer extends Component {
     super(props);
     this.state = {};
   }
+
+  // Renders
   render() {
     return <footer className="footer">Billin Code Challenge</footer>;
   }

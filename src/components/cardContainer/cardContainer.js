@@ -20,12 +20,13 @@ class CardContainer extends Component {
     }
   }
 
+  // Renders
   render() {
     if (this.state.articles && this.state.articles.length > 0) {
       return (
         <div className="columns  is-multiline card-container">
           {this.state.articles.map((item) => (
-            <Card article={item} key={item._id} />
+            <Card article={item} key={item.id} />
           ))}
         </div>
       );

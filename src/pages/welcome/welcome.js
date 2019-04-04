@@ -14,6 +14,7 @@ class Welcome extends Component {
   // lifecycle
   async componentWillMount() {}
 
+  // Renders
   render() {
     return (
       <div className="mainContainer">
@@ -21,6 +22,7 @@ class Welcome extends Component {
         <div className="">
           <CardContainer />
         </div>
+        <Footer />
       </div>
     );
   }
