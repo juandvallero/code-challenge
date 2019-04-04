@@ -12,7 +12,7 @@ class Welcome extends Component {
   }
 
   // lifecycle
-  async componentWillMount() {}
+  componentWillMount() {}
 
   // Renders
   render() {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Card from '../card/card';
 import './cardContainer.css';
-import articlesReducer from '../../store/reducers/articles.reducer';
 
 class _CardContainer extends Component {
   constructor(props) {
@@ -12,16 +11,16 @@ class _CardContainer extends Component {
   }
 
   // lifecycle
-  async componentWillMount() {
+  componentWillMount() {
     this.props.fetch();
   }
 
   // Renders
   render() {
-    if (this.state.articles && this.state.articles.length > 0) {
+    if (this.props.articles && this.props.articles.length > 0) {
       return (
         <div className="columns is-multiline card-container">
-          {this.state.articles.map((item) => (
+          {this.props.articles.map((item) => (
             <Card article={item} key={item.id} />
           ))}
         </div>
@@ -41,9 +40,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (store) => {
-  debugger;
   return {
-    data: store.articles
+    articles: store.articles
   };
 };
 

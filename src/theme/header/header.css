@@ -1,15 +1,23 @@
 .header {
-    color: #fff;
-    height: 50px;
-    background-color: #FF9200;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    
-    padding: 10px;
-    text-align: center;
-    font-weight: bolder;
-    font-size: 1.5em;
-    z-index: 9;
+  color: #fff;
+  height: 50px;
+  background-color: #ff9200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 10px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.5em;
+  z-index: 9;
+}
+
+.header-back {
+  position: absolute;
+  color: #fff;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
 }
