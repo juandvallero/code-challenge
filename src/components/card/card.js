@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './card.css';
 
@@ -10,17 +11,22 @@ class Card extends Component {
   render() {
     return (
       <div className="column is-one-quarter">
-        <div className="card">
-          <div className="card-title">
-            <h1>{this.props.article.title}</h1>
+        <Link to={`/` + this.props.article.id}>
+          <div className="card">
+            <div className="card-title">
+              <h1>{this.props.article.title}</h1>
+            </div>
+            <div className="card-content">
+              <p>{this.props.article.excerpt}</p>
+            </div>
+            <div className="card-footer">
+              <div>
+                <p>{this.props.article.author}</p>
+              </div>
+              {/* <div className="card-button">Show details</div> */}
+            </div>
           </div>
-          <div className="card-content">
-            <p>{this.props.article.excerpt}</p>
-          </div>
-          <div className="card-footer">
-            <p>{this.props.article.author}</p>
-          </div>
-        </div>
+        </Link>
       </div>
     );
   }
