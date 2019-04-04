@@ -45,3 +45,25 @@
   border-radius: 15px;
   font-style: italic;
 }
+
+.article-published {
+  margin-left: 20px;
+  font-size: 0.8em;
+  font-weight: normal;
+  background-color: #4fc775;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: #fff;
+  font-style: italic;
+}
+
+.article-nonpublished {
+  margin-left: 20px;
+  font-size: 0.8em;
+  font-weight: normal;
+  background-color: #ff5952;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: #fff;
+  font-style: italic;
+}

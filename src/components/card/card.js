@@ -23,7 +23,6 @@ class Card extends Component {
               <div>
                 <p>{this.props.article.author}</p>
               </div>
-              {/* <div className="card-button">Show details</div> */}
             </div>
           </div>
         </Link>

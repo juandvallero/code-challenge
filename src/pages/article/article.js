@@ -15,35 +15,50 @@ class _Article extends Component {
 
   // Renders
   render() {
-    return (
-      <div>
-        <div className="mainContainer">
-          <div className="article">
-            <div className="article-title">
-              <h1>{this.props.article.title}</h1>
-              <div className="tags-container">
-                <ul>{this.renderTags()}</ul>
+    if (this.props.article) {
+      return (
+        <div>
+          <div className="mainContainer">
+            <div className="article">
+              <div className="article-title">
+                <h1>
+                  {this.props.article.title}
+                  {this.renderPublished()}
+                </h1>
+                <div className="tags-container">
+                  <ul>{this.renderTags()}</ul>
+                </div>
               </div>
-            </div>
-            <div className="article-content">
-              <p>{this.props.article.content}</p>
-            </div>
-            <div className="article-footer">
-              <p>{this.props.article.author}</p>
+              <div className="article-content">
+                <p>{this.props.article.content}</p>
+              </div>
+              <div className="article-footer">
+                <p>{this.props.article.author}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 
   renderTags() {
-    if (this.props.article && this.props.article && this.props.article.tags) {
+    if (this.props.article && this.props.article.tags) {
       return this.props.article.tags.map((tag, index) => {
         return <li key={index}>{tag}</li>;
       });
     } else {
       return null;
+    }
+  }
+
+  renderPublished() {
+    if (this.props.article && this.props.article.published) {
+      return <span className="article-published">Published</span>;
+    } else {
+      return <span className="article-nonpublished">Non Published</span>;
     }
   }
 }
