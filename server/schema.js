@@ -1,4 +1,12 @@
-import { GraphQLBoolean, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema, GraphQLNonNull } from 'graphql';
+import {
+  GraphQLBoolean,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLList,
+  GraphQLSchema,
+  GraphQLNonNull,
+  GraphQLInputObjectType,
+} from 'graphql';
 import db from './db';
 
 const articleType = new GraphQLObjectType({
@@ -15,6 +23,28 @@ const articleType = new GraphQLObjectType({
       type: GraphQLString,
     },
     id: {
+      type: GraphQLString,
+    },
+    published: {
+      type: GraphQLBoolean,
+    },
+    tags: {
+      type: new GraphQLList(GraphQLString),
+    },
+    title: {
+      type: GraphQLString,
+    },
+  }),
+});
+
+const articleInputType = new GraphQLInputObjectType({
+  name: 'ArticleInput',
+  description: 'This represents a Article input',
+  fields: () => ({
+    author: {
+      type: GraphQLString,
+    },
+    content: {
       type: GraphQLString,
     },
     published: {
@@ -53,8 +83,48 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: () => ({
+    addArticle: {
+      type: articleType,
+      args: {
+        article: {
+          type: new GraphQLNonNull(articleInputType),
+        },
+      },
+      resolve: async (rootValue, args) => {
+        args.article.excerpt = args.article.content.slice(0, 350);
+        return db.Article.create(args.article);
+      },
+    },
+    updateArticle: {
+      type: articleType,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        article: {
+          type: new GraphQLNonNull(articleInputType),
+        },
+      },
+      resolve: async (rootValue, args) => db.Article.findOne({ _id: args.id }).update(args.article),
+    },
+    removeArticle: {
+      type: articleType,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: async (rootValue, args) => db.Article.findOne({ _id: args.id }).remove(),
+    },
+  }),
+});
+
 const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
 
 export default Schema;
