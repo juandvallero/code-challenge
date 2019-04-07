@@ -3,7 +3,8 @@ import API_END_POINT from '../../config/api';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import {
   FETCH_ARTICLES_QUERY,
-  FIND_ARTICLE_QUERY
+  FIND_ARTICLE_QUERY,
+  REMOVE_ARTICLE_QUERY
 } from '../queries/articles.queries';
 
 // Fetch Articles
@@ -42,4 +43,24 @@ function* findArticle(action) {
 
 export function* findArticleSaga() {
   yield takeEvery('FIND_ARTICLE_REQUEST', findArticle);
+}
+
+// Remove Article
+const _removeArticle = (id) => {
+  const query = REMOVE_ARTICLE_QUERY(id);
+  return axios.post(API_END_POINT, { query });
+};
+
+function* removeArticle(action) {
+  try {
+    const response = yield call(_removeArticle, action.payload.id);
+    yield put({ type: 'REMOVE_ARTICLE_SUCCESS', payload: response.data });
+    yield put({ type: 'FETCH_ARTICLES_REQUEST' });
+  } catch (e) {
+    yield put({ type: 'REMOVE_ARTICLE_FAILED', message: e.message });
+  }
+}
+
+export function* removeArticleSaga() {
+  yield takeEvery('REMOVE_ARTICLE_REQUEST', removeArticle);
 }

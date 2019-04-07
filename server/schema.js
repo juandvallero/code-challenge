@@ -117,7 +117,10 @@ const Mutation = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: async (rootValue, args) => db.Article.findOne({ _id: args.id }).remove(),
+      resolve: async (rootValue, args) => {
+        const res = await db.Article.findOne({ _id: args.id }).remove();
+        return { id: args.id };
+      },
     },
   }),
 });

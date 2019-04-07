@@ -3,7 +3,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import articlesReducer from './reducers/articles.reducer';
-import { fetchArticlesSaga, findArticleSaga } from './actions/articles.actions';
+import {
+  fetchArticlesSaga,
+  findArticleSaga,
+  removeArticleSaga
+} from './actions/articles.actions';
 
 const logger = createLogger({
   collapsed: true,
@@ -24,3 +28,4 @@ export const store = createStore(
 // Run Sagas
 sagaMiddleware.run(fetchArticlesSaga);
 sagaMiddleware.run(findArticleSaga);
+sagaMiddleware.run(removeArticleSaga);

@@ -32,14 +32,26 @@
 }
 
 .card-footer > div {
-  display: inline-block;
+  display: block;
 }
 
 .card-footer > div > p {
   font-style: italic;
   font-size: 0.8em;
+  display: inline;
 }
 
 .card-button {
   float: right;
+  text-decoration: underline;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.card-button-delete {
+  color: red;
+}
+
+.card-button:hover {
+  color: #ff9200;
 }

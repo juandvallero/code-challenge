@@ -17,3 +17,10 @@ export const FIND_ARTICLE_QUERY = (id) => `{
       tags
     }
   }`;
+
+export const REMOVE_ARTICLE_QUERY = (id) => `mutation RemoveArticle {
+  removeArticle(id: "${id}") {
+    id
+    }
+  }
+  `;

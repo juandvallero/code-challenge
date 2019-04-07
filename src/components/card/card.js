@@ -22,6 +22,14 @@ class Card extends Component {
             <div className="card-footer">
               <div>
                 <p>{this.props.article.author}</p>
+                <p
+                  className="card-button card-button-delete"
+                  onClick={($event) => {
+                    $event.preventDefault();
+                    this.props.onRemoveCard(this.props.article.id);
+                  }}>
+                  Delete
+                </p>
               </div>
             </div>
           </div>
@@ -29,6 +37,9 @@ class Card extends Component {
       </div>
     );
   }
+
+  // events handlers
+  removeCard(id) {}
 }
 
 Card.propTypes = {

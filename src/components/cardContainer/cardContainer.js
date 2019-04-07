@@ -19,10 +19,19 @@ class _CardContainer extends Component {
   render() {
     if (this.props.articles && this.props.articles.length > 0) {
       return (
-        <div className="columns is-multiline card-container">
-          {this.props.articles.map((item) => (
-            <Card article={item} key={item.id} />
-          ))}
+        <div>
+          <div className="new">Create new article</div>
+          <div className="columns is-multiline card-container">
+            {this.props.articles.map((item) => (
+              <Card
+                article={item}
+                key={item.id}
+                onRemoveCard={(id) => {
+                  this.props.remove(id);
+                }}
+              />
+            ))}
+          </div>
         </div>
       );
     } else {
@@ -35,6 +44,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetch: () => {
       dispatch({ type: 'FETCH_ARTICLES_REQUEST' });
+    },
+    remove: (id) => {
+      dispatch({ type: 'REMOVE_ARTICLE_REQUEST', payload: { id: id } });
     }
   };
 };

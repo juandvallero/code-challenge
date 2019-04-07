@@ -8,6 +8,10 @@ export default function articlesReducer(state = [], action) {
       return action.payload.data.article;
     case 'FIND_ARTICLE_FAILED':
       return Object.assign({}, action.payload);
+    case 'REMOVE_ARTICLE_SUCCESS':
+      return state;
+    case 'REMOVE_ARTICLE_FAILED':
+      return Object.assign({}, action.payload);
     default:
       return state;
   }
